@@ -3,7 +3,7 @@ import { useLang } from "../../shared/i18n/language";
 import { Icon } from "../../shared/ui/Icons";
 import SocialLinks from "../../shared/ui/SocialLinks";
 
-export default function Footer({ onPrivacy }) {
+export default function Footer({ onPrivacy, onSection }) {
   const { t } = useLang();
 
   return (
@@ -68,7 +68,13 @@ export default function Footer({ onPrivacy }) {
           <p>{t.rights}</p>
           <nav aria-label="Footer">
             {t.footerNav.map((item) => (
-              <a key={item.id} href={`#${item.id}`}>
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(event) => {
+                  if (onSection?.(event, item.id)) event.preventDefault();
+                }}
+              >
                 {item.label}
               </a>
             ))}

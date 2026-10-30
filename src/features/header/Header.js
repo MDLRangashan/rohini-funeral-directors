@@ -2,13 +2,18 @@ import { useLang } from "../../shared/i18n/language";
 import Brand from "../../shared/ui/Brand";
 import { Icon } from "../../shared/ui/Icons";
 
-export default function Header({ active, menuOpen, setMenuOpen }) {
+export default function Header({ active, menuOpen, setMenuOpen, onSection }) {
   const { t } = useLang();
+
+  const follow = (event, id) => {
+    setMenuOpen(false);
+    if (onSection?.(event, id)) event.preventDefault();
+  };
 
   return (
     <header className="header">
       <div className="container header-inner">
-        <Brand sub={t.brandSub} />
+        <Brand sub={t.brandSub} onClick={(event) => follow(event, "home")} />
         <nav className={menuOpen ? "nav open" : "nav"} aria-label="Primary">
           {t.nav.map((item) => (
             <a
@@ -16,7 +21,7 @@ export default function Header({ active, menuOpen, setMenuOpen }) {
               href={`#${item.id}`}
               className={active === item.id ? "active" : ""}
               aria-current={active === item.id ? "true" : undefined}
-              onClick={() => setMenuOpen(false)}
+              onClick={(event) => follow(event, item.id)}
             >
               {item.label}
             </a>

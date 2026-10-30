@@ -127,38 +127,309 @@ export const copy = {
     viewPackages: "View All Packages",
     hidePackages: "Show Fewer Details",
     contactPricing: "Contact for Pricing",
+    viewDetails: "View details",
+    backToPackages: "Back to packages",
+    packageIncludes: "Included in this farewell",
+    packageGallery: "Arrangements for this package",
+    enquirePackage: "Enquire about this package",
+    enquireMessage: "Hello Rohini Funeral Directors, I would like to enquire about the {title}.",
+    notedSeparately: "Noted separately",
+    packageMissing: "This package could not be found.",
     packages: [
       {
+        id: "basic",
         image: "pkg-essential.jpg",
         title: "Basic Package",
         text: "A simple, dignified farewell with the essentials arranged for your family.",
-        detail:
-          "Guidance on the day, a modest floral tribute, and respectful transport.",
+        detail: "Guidance on the day, a modest floral tribute, and respectful transport.",
         alt: "White roses, lilies and baby's breath",
+        points: [
+          {
+            icon: "coffin",
+            title: "Coffin and its fittings",
+            text: "A simple closed coffin with the essential handles and fittings.",
+          },
+          {
+            icon: "care",
+            title: "Preparation of the deceased",
+            text: "Careful preparation so your loved one is presented with dignity.",
+          },
+          {
+            icon: "car",
+            title: "Hearse and transport charges",
+            text: "Hearse transport for the funeral journey, within the included distance.",
+          },
+          {
+            icon: "flower",
+            title: "Flowers and wreaths",
+            text: "A modest white floral tribute and wreath.",
+          },
+          {
+            icon: "parlour",
+            title: "Funeral parlour or viewing facilities",
+            text: "A quiet parlour where the family can sit with their loved one.",
+          },
+          {
+            icon: "professional",
+            title: "Staff assistance and funeral arrangements",
+            text: "Our team guides the arrangements from the first call.",
+          },
+          {
+            icon: "flame",
+            title: "Cremation or burial-related services",
+            text: "Support for the cremation or burial your family chooses.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "Additional charges, such as distance fees or taxes",
+            text: "Distance fees, taxes, and any extras are explained clearly before you decide.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-basic.jpg",
+            title: "Parlour",
+            alt: "A modest funeral parlour with a simple coffin and white chairs",
+          },
+          {
+            image: "coffin-basic.jpg",
+            title: "Coffin",
+            alt: "A simple pale-wood coffin with silver handles",
+          },
+          {
+            image: "pkg-essential.jpg",
+            title: "Flowers",
+            alt: "White roses, lilies and baby's breath",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "Hearse",
+            alt: "Black hearse with white lilies on the bonnet",
+          },
+        ],
       },
       {
+        id: "standard",
         image: "pkg-complete.jpg",
         title: "Standard Package",
         text: "A coordinated farewell with flowers, transport, and ceremony support.",
         detail:
           "Ceremony coordination, a floral tribute, family transport, and support from the first call through the service.",
         alt: "A full white rose and carnation tribute",
+        points: [
+          {
+            icon: "coffin",
+            title: "Coffin and its fittings",
+            text: "A polished coffin with brass fittings for a coordinated farewell.",
+          },
+          {
+            icon: "care",
+            title: "Preparation of the deceased",
+            text: "Thorough, respectful preparation before the viewing.",
+          },
+          {
+            icon: "car",
+            title: "Hearse and transport charges",
+            text: "Hearse and funeral transport, with the included distance set out in advance.",
+          },
+          {
+            icon: "flower",
+            title: "Flowers and wreaths",
+            text: "A full white floral tribute and wreath for the parlour and the service.",
+          },
+          {
+            icon: "parlour",
+            title: "Funeral parlour or viewing facilities",
+            text: "A dressed viewing parlour with seating for family and guests.",
+          },
+          {
+            icon: "professional",
+            title: "Staff assistance and funeral arrangements",
+            text: "Coordination of the day, from arrival through the service.",
+          },
+          {
+            icon: "flame",
+            title: "Cremation or burial-related services",
+            text: "Arrangements for cremation or burial, shaped around your wishes.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "Additional charges, such as distance fees or taxes",
+            text: "Longer distances, taxes, and optional extras are quoted separately.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-standard.jpg",
+            title: "Parlour",
+            alt: "A viewing parlour with a walnut coffin, white chairs, and a wreath",
+          },
+          {
+            image: "coffin-standard.jpg",
+            title: "Coffin",
+            alt: "A polished walnut coffin with brass fittings and white roses",
+          },
+          {
+            image: "gallery-floral.jpg",
+            title: "Flowers",
+            alt: "A white lily and rose funeral wreath",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "Hearse",
+            alt: "Black hearse with white lilies on the bonnet",
+          },
+        ],
       },
       {
+        id: "premium",
         image: "gallery-floral.jpg",
         title: "Premium Package",
-        text: "A fuller farewell with added flowers, refreshments, and care for guests.",
+        text: "A formal farewell with a premium coffin, a dressed hall, and the pansakula offerings.",
         detail:
-          "Expanded floral tributes, family transport, refreshments, and close coordination throughout the day.",
+          "A premium coffin, special florals, a viewing hall, preservation, and the offerings for the final rites.",
         alt: "White funeral flowers arranged on linen",
+        points: [
+          {
+            icon: "coffin",
+            title: "Premium coffin",
+            text: "A high-finish coffin with ornate fittings, prepared for a formal farewell.",
+          },
+          {
+            icon: "flower",
+            title: "Special floral decorations and wreaths",
+            text: "Standing sprays, wreaths, and a fuller floral setting for the hall.",
+          },
+          {
+            icon: "car",
+            title: "Hearse and body transportation",
+            text: "Hearse transport for your loved one's journey to the hall and onwards.",
+          },
+          {
+            icon: "parlour",
+            title: "Funeral parlour or viewing hall",
+            text: "A dressed viewing hall for family, friends, and the final gathering.",
+          },
+          {
+            icon: "care",
+            title: "Body preparation and preservation",
+            text: "Careful preparation and preservation for the period of viewing.",
+          },
+          {
+            icon: "stand",
+            title: "Funeral stand and decorations",
+            text: "A decorated funeral stand dressed in white for the viewing.",
+          },
+          {
+            icon: "professional",
+            title: "Staff assistance with funeral arrangements",
+            text: "Close support as the arrangements, timings, and hall are set.",
+          },
+          {
+            icon: "arrange",
+            title:
+              "Pansakula items required for the final funeral rites, including the necessary offerings for Buddhist monks",
+            text: "White cloth, flowers, incense, and the offerings prepared for the monks.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-premium.jpg",
+            title: "Viewing hall",
+            alt: "A grand viewing hall with a floral funeral stand and a dark coffin",
+          },
+          {
+            image: "coffin-premium.jpg",
+            title: "Premium coffin",
+            alt: "A dark mahogany coffin with silver fittings and white lilies",
+          },
+          {
+            image: "floral-premium.jpg",
+            title: "Floral decorations",
+            alt: "Standing sprays and a wreath of white lilies, orchids, and pale yellow flowers",
+          },
+          {
+            image: "pansakula.jpg",
+            title: "Pansakula offerings",
+            alt: "White cloth, an oil lamp, incense, betel leaves, and lotus flowers",
+          },
+        ],
       },
       {
+        id: "custom",
         image: "pkg-custom.jpg",
         title: "Custom Funeral Package",
         text: "A farewell shaped around your customs, wishes, and chosen services.",
         detail:
           "Arrangements built around your religious customs, family wishes, and the scale of farewell you prefer.",
         alt: "White lilies and orchids arranged as a tribute",
+        points: [
+          {
+            icon: "coffin",
+            title: "Coffin and its fittings",
+            text: "A coffin and fittings chosen around your customs and the farewell you prefer.",
+          },
+          {
+            icon: "care",
+            title: "Preparation of the deceased",
+            text: "Preparation carried out with the care and customs your family asks for.",
+          },
+          {
+            icon: "car",
+            title: "Hearse and transport charges",
+            text: "Hearse and transport planned around the places and times you need.",
+          },
+          {
+            icon: "flower",
+            title: "Flowers and wreaths",
+            text: "Flowers and wreaths selected to suit the scale and style of the farewell.",
+          },
+          {
+            icon: "parlour",
+            title: "Funeral parlour or viewing facilities",
+            text: "A parlour arranged for a large gathering or a private farewell.",
+          },
+          {
+            icon: "professional",
+            title: "Staff assistance and funeral arrangements",
+            text: "Staff who shape the arrangements around your family's wishes.",
+          },
+          {
+            icon: "flame",
+            title: "Cremation or burial-related services",
+            text: "Cremation or burial support, arranged for the rite you follow.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "Additional charges, such as distance fees or taxes",
+            text: "Distance fees, taxes, and services beyond the plan are confirmed with you first.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-custom.jpg",
+            title: "Parlour",
+            alt: "A flexible funeral hall with a wood coffin and white orchids",
+          },
+          {
+            image: "coffin-custom.jpg",
+            title: "Coffin",
+            alt: "A warm-wood coffin with silver fittings and white orchids and lilies",
+          },
+          {
+            image: "pkg-custom.jpg",
+            title: "Flowers",
+            alt: "White lilies and orchids arranged as a tribute",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "Hearse",
+            alt: "Black hearse with white lilies on the bonnet",
+          },
+        ],
       },
     ],
     galleryKicker: "Our Gallery",
@@ -292,34 +563,306 @@ export const copy = {
     viewPackages: "සියලු පැකේජ බලන්න",
     hidePackages: "අඩු විස්තර පෙන්වන්න",
     contactPricing: "මිල ගණන් සඳහා අමතන්න",
+    viewDetails: "විස්තර බලන්න",
+    backToPackages: "පැකේජ වෙත ආපසු",
+    packageIncludes: "මෙම සමුගැනීමට ඇතුළත්",
+    packageGallery: "මෙම පැකේජයේ සැලසුම්",
+    enquirePackage: "මෙම පැකේජය ගැන විමසන්න",
+    enquireMessage: "රෝහිණී අවමංගල්‍ය අධ්‍යක්ෂකවරුනි, මට {title} ගැන විමසීමට අවශ්‍යයි.",
+    notedSeparately: "වෙනම සටහන් වේ",
+    packageMissing: "මෙම පැකේජය සොයාගත නොහැක.",
     packages: [
       {
+        id: "basic",
         image: "pkg-essential.jpg",
         title: "මූලික පැකේජය",
         text: "පවුලට අවශ්‍ය මූලික සැලසුම් සහිත සරල, ගෞරවනීය සමුගැනීමක්.",
         detail: "දවස පිළිබඳ මඟ පෙන්වීම, සරල මල් උපහාරයක් සහ ගෞරවනීය ප්‍රවාහනය.",
         alt: "සුදු රෝස, ලිලී මල් සහ කුඩා සුදු මල්",
+        points: [
+          {
+            icon: "coffin",
+            title: "මිනීපෙට්ටිය සහ එහි සවිකිරීම්",
+            text: "අත්‍යවශ්‍ය හැඩල් සහ සවිකිරීම් සහිත සරල මිනීපෙට්ටියක්.",
+          },
+          {
+            icon: "care",
+            title: "මළ සිරුර සූදානම් කිරීම",
+            text: "ඔබේ ආදරණීයයා ගෞරවයෙන් පෙනී සිටින පරිදි සැලකිල්ලෙන් සූදානම් කිරීම.",
+          },
+          {
+            icon: "car",
+            title: "ශව වාහනය සහ ප්‍රවාහන ගාස්තු",
+            text: "ඇතුළත් දුර තුළ, අවමංගල්‍ය ගමන සඳහා ශව වාහන ප්‍රවාහනය.",
+          },
+          {
+            icon: "flower",
+            title: "මල් සහ මල්මාලා",
+            text: "සරල සුදු මල් උපහාරයක් සහ මල්මාලාවක්.",
+          },
+          {
+            icon: "parlour",
+            title: "අවමංගල්‍ය ශාලාව හෝ දැකීමේ පහසුකම්",
+            text: "පවුලට වාඩි විය හැකි නිහඬ ශාලාවක්.",
+          },
+          {
+            icon: "professional",
+            title: "කාර්ය මණ්ඩල සහාය සහ අවමංගල්‍ය සැලසුම්",
+            text: "පළමු ඇමතුමේ සිට සැලසුම් පිළිබඳව අපේ කණ්ඩායමේ මඟ පෙන්වීම.",
+          },
+          {
+            icon: "flame",
+            title: "ආදාහන හෝ භූමදාන ආශ්‍රිත සේවා",
+            text: "ඔබේ පවුල තෝරන ආදාහනයට හෝ භූමදානයට සහාය.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "අමතර ගාස්තු, දුර ගාස්තු හෝ බදු වැනි",
+            text: "දුර ගාස්තු, බදු සහ අමතර දේ, තීරණයට පෙර පැහැදිලිව කියනු ලැබේ.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-basic.jpg",
+            title: "ශාලාව",
+            alt: "සරල මිනීපෙට්ටියක් සහ සුදු පුටු සහිත සාමාන්‍ය අවමංගල්‍ය ශාලාව",
+          },
+          {
+            image: "coffin-basic.jpg",
+            title: "මිනීපෙට්ටිය",
+            alt: "රිදී හැඩල් සහිත සරල ලා පැහැති ලී මිනීපෙට්ටිය",
+          },
+          {
+            image: "pkg-essential.jpg",
+            title: "මල්",
+            alt: "සුදු රෝස, ලිලී මල් සහ කුඩා සුදු මල්",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "ශව වාහනය",
+            alt: "බොනට් එක මත සුදු මල් සහිත කළු ශව වාහනය",
+          },
+        ],
       },
       {
+        id: "standard",
         image: "pkg-complete.jpg",
         title: "සම්මත පැකේජය",
         text: "මල්, ප්‍රවාහනය සහ උත්සව සහාය සමඟ සම්බන්ධීකරණය කළ සමුගැනීමක්.",
         detail: "උත්සව සම්බන්ධීකරණය, මල් උපහාරයක්, පවුල් ප්‍රවාහනය සහ පළමු ඇමතුමේ සිට සේවය දක්වා සහාය.",
         alt: "සුදු රෝස සහ කානේෂන් මල් උපහාරය",
+        points: [
+          {
+            icon: "coffin",
+            title: "මිනීපෙට්ටිය සහ එහි සවිකිරීම්",
+            text: "පිත්තල සවිකිරීම් සහිත ඔප දැමූ මිනීපෙට්ටියක්.",
+          },
+          {
+            icon: "care",
+            title: "මළ සිරුර සූදානම් කිරීම",
+            text: "දැකීමට පෙර ගෞරවයෙන්, ප්‍රවේශමෙන් සූදානම් කිරීම.",
+          },
+          {
+            icon: "car",
+            title: "ශව වාහනය සහ ප්‍රවාහන ගාස්තු",
+            text: "ශව වාහනය සහ අවමංගල්‍ය ප්‍රවාහනය. ඇතුළත් දුර කල්තියා දන්වනු ලැබේ.",
+          },
+          {
+            icon: "flower",
+            title: "මල් සහ මල්මාලා",
+            text: "ශාලාවට සහ උත්සවයට සුදු මල් උපහාරයක් සහ මල්මාලාවක්.",
+          },
+          {
+            icon: "parlour",
+            title: "අවමංගල්‍ය ශාලාව හෝ දැකීමේ පහසුකම්",
+            text: "පවුලට සහ අමුත්තන්ට ආසන සහිත සරසන ලද දැකීමේ ශාලාවක්.",
+          },
+          {
+            icon: "professional",
+            title: "කාර්ය මණ්ඩල සහාය සහ අවමංගල්‍ය සැලසුම්",
+            text: "පැමිණීමේ සිට උත්සවය දක්වා දවස සම්බන්ධීකරණය කිරීම.",
+          },
+          {
+            icon: "flame",
+            title: "ආදාහන හෝ භූමදාන ආශ්‍රිත සේවා",
+            text: "ඔබේ කැමැත්තට ගැලපෙන ආදාහන හෝ භූමදාන සැලසුම්.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "අමතර ගාස්තු, දුර ගාස්තු හෝ බදු වැනි",
+            text: "දිගු දුර, බදු සහ අමතර සේවා වෙනම දන්වනු ලැබේ.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-standard.jpg",
+            title: "ශාලාව",
+            alt: "වෝල්නට් මිනීපෙට්ටියක්, සුදු පුටු සහ මල්මාලාවක් සහිත දැකීමේ ශාලාව",
+          },
+          {
+            image: "coffin-standard.jpg",
+            title: "මිනීපෙට්ටිය",
+            alt: "පිත්තල සවිකිරීම් සහ සුදු රෝස සහිත ඔප දැමූ මිනීපෙට්ටිය",
+          },
+          {
+            image: "gallery-floral.jpg",
+            title: "මල්",
+            alt: "සුදු ලිලී සහ රෝස මල්මාලාව",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "ශව වාහනය",
+            alt: "බොනට් එක මත සුදු මල් සහිත කළු ශව වාහනය",
+          },
+        ],
       },
       {
+        id: "premium",
         image: "gallery-floral.jpg",
         title: "ප්‍රිමියම් පැකේජය",
-        text: "මල්, ආහාරපාන සහ අමුත්තන් සඳහා වැඩි සැලකිල්ලක් ඇති සම්පූර්ණ සමුගැනීමක්.",
-        detail: "විශාල මල් උපහාර, පවුල් ප්‍රවාහනය, ආහාරපාන සහ දවස පුරා සමීප සම්බන්ධීකරණය.",
+        text: "ප්‍රිමියම් මිනීපෙට්ටියක්, සරසන ලද ශාලාවක් සහ පන්සකුල පූජා සහිත විධිමත් සමුගැනීමක්.",
+        detail: "ප්‍රිමියම් මිනීපෙට්ටිය, විශේෂ මල්, දැකීමේ ශාලාව, සංරක්ෂණය සහ අවසන් ක්‍රම සඳහා පූජා.",
         alt: "සුදු අවමංගල්‍ය මල්",
+        points: [
+          {
+            icon: "coffin",
+            title: "ප්‍රිමියම් මිනීපෙට්ටිය",
+            text: "විධිමත් සමුගැනීමකට සූදානම් කළ, විශේෂ සවිකිරීම් සහිත උසස් මිනීපෙට්ටියක්.",
+          },
+          {
+            icon: "flower",
+            title: "විශේෂ මල් සැරසිලි සහ මල්මාලා",
+            text: "සිටගෙන සිටින මල් සැරසිලි, මල්මාලා සහ ශාලාවට වඩාත් සම්පූර්ණ මල් අලංකරණය.",
+          },
+          {
+            icon: "car",
+            title: "ශව වාහනය සහ සිරුර ප්‍රවාහනය",
+            text: "ශාලාව දක්වා සහ ඉන් ඔබ්බට ඔබේ ආදරණීයයාගේ ගමන සඳහා ශව වාහන ප්‍රවාහනය.",
+          },
+          {
+            icon: "parlour",
+            title: "අවමංගල්‍ය ශාලාව හෝ දැකීමේ ශාලාව",
+            text: "පවුල, ඥාතීන් සහ අවසන් රැස්වීම සඳහා සරසන ලද දැකීමේ ශාලාවක්.",
+          },
+          {
+            icon: "care",
+            title: "සිරුර සූදානම් කිරීම සහ සංරක්ෂණය",
+            text: "දැකීමේ කාලය සඳහා සැලකිල්ලෙන් සූදානම් කිරීම සහ සංරක්ෂණය.",
+          },
+          {
+            icon: "stand",
+            title: "අවමංගල්‍ය වේදිකාව සහ සැරසිලි",
+            text: "දැකීම සඳහා සුදු පැහැයෙන් සරසන ලද අවමංගල්‍ය වේදිකාවක්.",
+          },
+          {
+            icon: "professional",
+            title: "අවමංගල්‍ය සැලසුම් සඳහා කාර්ය මණ්ඩල සහාය",
+            text: "වේලාවන්, ශාලාව සහ සැලසුම් සකසන අතරතුර සමීප සහාය.",
+          },
+          {
+            icon: "arrange",
+            title:
+              "අවසන් අවමංගල්‍ය ක්‍රම සඳහා අවශ්‍ය පන්සකුල භාණ්ඩ, බෞද්ධ භික්ෂූන් වහන්සේලාට අවශ්‍ය පූජා ඇතුළුව",
+            text: "සුදු රෙදි, මල්, සුවඳ දුම් සහ භික්ෂූන් වහන්සේලාට සූදානම් කළ පූජා.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-premium.jpg",
+            title: "දැකීමේ ශාලාව",
+            alt: "මල් වේදිකාවක් සහ අඳුරු මිනීපෙට්ටියක් සහිත විශාල දැකීමේ ශාලාව",
+          },
+          {
+            image: "coffin-premium.jpg",
+            title: "ප්‍රිමියම් මිනීපෙට්ටිය",
+            alt: "රිදී සවිකිරීම් සහ සුදු ලිලී සහිත අඳුරු මහෝගනී මිනීපෙට්ටිය",
+          },
+          {
+            image: "floral-premium.jpg",
+            title: "මල් සැරසිලි",
+            alt: "සුදු ලිලී, ඕකිඩ් සහ ලා කහ මල් සහිත සිටගෙන සිටින සැරසිලි සහ මල්මාලාව",
+          },
+          {
+            image: "pansakula.jpg",
+            title: "පන්සකුල පූජා",
+            alt: "සුදු රෙදි, පහන, සුවඳ දුම්, බුලත් කොළ සහ ඔළු මල්",
+          },
+        ],
       },
       {
+        id: "custom",
         image: "pkg-custom.jpg",
         title: "අභිරුචි අවමංගල්‍ය පැකේජය",
         text: "ඔබේ සිරිත්, කැමැත්ත සහ තෝරාගත් සේවා වටා සකසන ලද සමුගැනීමක්.",
         detail: "ආගමික සිරිත්, පවුලේ කැමැත්ත සහ ඔබ තෝරන සේවා වටා ගොඩනඟන ලද සැලසුම්.",
         alt: "සුදු ලිලී මල් සහ ඕකිඩ් මල් උපහාරය",
+        points: [
+          {
+            icon: "coffin",
+            title: "මිනීපෙට්ටිය සහ එහි සවිකිරීම්",
+            text: "ඔබේ සිරිත් සහ ඔබ කැමති සමුගැනීම වටා තෝරාගත් මිනීපෙට්ටියක් සහ සවිකිරීම්.",
+          },
+          {
+            icon: "care",
+            title: "මළ සිරුර සූදානම් කිරීම",
+            text: "ඔබේ පවුල ඉල්ලන සිරිත් සහ සැලකිල්ල අනුව සූදානම් කිරීම.",
+          },
+          {
+            icon: "car",
+            title: "ශව වාහනය සහ ප්‍රවාහන ගාස්තු",
+            text: "ඔබට අවශ්‍ය ස්ථාන සහ වේලාවන් වටා සැලසුම් කළ ශව වාහනය සහ ප්‍රවාහනය.",
+          },
+          {
+            icon: "flower",
+            title: "මල් සහ මල්මාලා",
+            text: "සමුගැනීමේ ප්‍රමාණයට සහ ශෛලියට ගැලපෙන මල් සහ මල්මාලා.",
+          },
+          {
+            icon: "parlour",
+            title: "අවමංගල්‍ය ශාලාව හෝ දැකීමේ පහසුකම්",
+            text: "විශාල රැස්වීමකට හෝ පෞද්ගලික අවස්ථාවකට සකසන ශාලාවක්.",
+          },
+          {
+            icon: "professional",
+            title: "කාර්ය මණ්ඩල සහාය සහ අවමංගල්‍ය සැලසුම්",
+            text: "පවුලේ කැමැත්ත වටා සැලසුම් සකසන කාර්ය මණ්ඩලය.",
+          },
+          {
+            icon: "flame",
+            title: "ආදාහන හෝ භූමදාන ආශ්‍රිත සේවා",
+            text: "ඔබ අනුගමනය කරන චාරිත්‍රයට ගැලපෙන ආදාහන හෝ භූමදාන සහාය.",
+          },
+          {
+            icon: "note",
+            note: true,
+            title: "අමතර ගාස්තු, දුර ගාස්තු හෝ බදු වැනි",
+            text: "දුර ගාස්තු, බදු සහ සැලැස්මෙන් ඔබ්බට යන සේවා පළමුව ඔබ සමඟ තහවුරු කරනු ලැබේ.",
+          },
+        ],
+        photos: [
+          {
+            image: "parlour-custom.jpg",
+            title: "ශාලාව",
+            alt: "ලී මිනීපෙට්ටියක් සහ සුදු ඕකිඩ් සහිත නම්‍යශීලී අවමංගල්‍ය ශාලාව",
+          },
+          {
+            image: "coffin-custom.jpg",
+            title: "මිනීපෙට්ටිය",
+            alt: "රිදී සවිකිරීම්, සුදු ඕකිඩ් සහ ලිලී සහිත උණුසුම් ලී මිනීපෙට්ටිය",
+          },
+          {
+            image: "pkg-custom.jpg",
+            title: "මල්",
+            alt: "සුදු ලිලී මල් සහ ඕකිඩ් මල් උපහාරය",
+          },
+          {
+            image: "fleet-hearse.jpg",
+            title: "ශව වාහනය",
+            alt: "බොනට් එක මත සුදු මල් සහිත කළු ශව වාහනය",
+          },
+        ],
       },
     ],
     galleryKicker: "අපගේ ගැලරිය",

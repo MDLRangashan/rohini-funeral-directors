@@ -198,6 +198,35 @@ export function Icon({ name, className }) {
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>
       );
+    case "coffin":
+      return (
+        <svg {...common}>
+          <path d="M4 10.2 7 7.2h10l3 3v7.2H4v-7.2z" />
+          <path d="M4 10.2h16M8.2 13.2h2.2M13.6 13.2h2.2" />
+        </svg>
+      );
+    case "parlour":
+      return (
+        <svg {...common}>
+          <path d="M3.5 10.5 12 4.5l8.5 6" />
+          <path d="M6 9.8V19.5h12V9.8" />
+          <path d="M10 19.5v-4.2h4v4.2" />
+        </svg>
+      );
+    case "note":
+      return (
+        <svg {...common}>
+          <path d="M7 4.5h7.2L17.5 8v12H7v-15.5z" />
+          <path d="M14 4.8V8.2h3.2M9.2 12h5.6M9.2 15h3.6" />
+        </svg>
+      );
+    case "stand":
+      return (
+        <svg {...common}>
+          <path d="M7 15.5h10M8.5 15.5 7 19.5M15.5 15.5 17 19.5" />
+          <path d="M6.5 15.5 8.2 8.5h7.6l1.7 7M9 11.2h6" />
+        </svg>
+      );
     default:
       return null;
   }
