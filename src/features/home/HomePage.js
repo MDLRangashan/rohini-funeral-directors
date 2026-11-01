@@ -4,6 +4,7 @@ import Footer from "../contact/Footer";
 import Fleet from "../fleet/Fleet";
 import Gallery from "../gallery/Gallery";
 import Header from "../header/Header";
+import Ticker from "../header/Ticker";
 import TopBar from "../header/TopBar";
 import Hero from "../hero/Hero";
 import PackageDetail from "../packages/PackageDetail";
@@ -17,6 +18,27 @@ import Lightbox from "../../shared/ui/Lightbox";
 function readPackageId() {
   const match = window.location.hash.match(/^#package\/([a-z0-9-]+)$/);
   return match ? match[1] : null;
+}
+
+function scrollTargets() {
+  const page = document.querySelector(".page");
+  return [document.scrollingElement, document.documentElement, document.body, page].filter(
+    (node, index, list) => node && list.indexOf(node) === index
+  );
+}
+
+function readScrollTop() {
+  return scrollTargets().reduce((max, node) => Math.max(max, node.scrollTop || 0), window.scrollY || 0);
+}
+
+function writeScrollTop(y) {
+  const root = document.scrollingElement || document.documentElement;
+  window.scrollTo(0, y);
+  root.scrollTop = y;
+  const page = document.querySelector(".page");
+  if (page && page !== root && page.scrollHeight > page.clientHeight + 1) {
+    page.scrollTop = y;
+  }
 }
 
 export default function HomePage() {
@@ -38,8 +60,75 @@ export default function HomePage() {
   }, []);
 
   useEffect(() => {
-    if (packageId) window.scrollTo(0, 0);
+    if (!packageId) return undefined;
+
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    const previousAnchor = root.style.overflowAnchor;
+    root.style.scrollBehavior = "auto";
+    root.style.overflowAnchor = "none";
+
+    let frame = 0;
+    let cancelled = false;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const restore = () => {
+      root.style.scrollBehavior = previousBehavior;
+      root.style.overflowAnchor = previousAnchor;
+    };
+
+    const animateFrom = (from) => {
+      if (cancelled) return;
+      if (reduceMotion || from <= 1) {
+        writeScrollTop(0);
+        restore();
+        return;
+      }
+
+      const started = performance.now();
+      const duration = Math.min(800, Math.max(480, from * 0.22));
+      const tick = (now) => {
+        if (cancelled) return;
+        const current = readScrollTop();
+        const progress = Math.min(1, (now - started) / duration);
+        const eased = 1 - (1 - progress) ** 3;
+        const target = Math.round(from * (1 - eased));
+        writeScrollTop(Math.min(current, target));
+        if (progress < 1 && readScrollTop() > 1) {
+          frame = requestAnimationFrame(tick);
+          return;
+        }
+        writeScrollTop(0);
+        restore();
+      };
+      frame = requestAnimationFrame(tick);
+    };
+
+    const timer = window.setTimeout(() => {
+      frame = requestAnimationFrame(() => animateFrom(readScrollTop()));
+    }, 40);
+
+    return () => {
+      cancelled = true;
+      window.clearTimeout(timer);
+      cancelAnimationFrame(frame);
+      restore();
+    };
   }, [packageId]);
+
+  useEffect(() => {
+    const header = document.querySelector(".site-header");
+    const page = header?.closest(".page");
+    if (!header || !page) return undefined;
+    const sync = () => {
+      page.style.setProperty("--header", `${header.offsetHeight}px`);
+    };
+    sync();
+    if (!("ResizeObserver" in window)) return undefined;
+    const observer = new ResizeObserver(sync);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, [lang, packageId]);
 
   useEffect(() => {
     if (packageId) return undefined;
@@ -88,7 +177,6 @@ export default function HomePage() {
     }
     setMenuOpen(false);
     setPackageId(id);
-    window.scrollTo(0, 0);
   }, []);
 
   const backToPackages = useCallback(() => {
@@ -120,7 +208,7 @@ export default function HomePage() {
   );
 
   return (
-    <div className={`page lang-${lang}`}>
+    <div className={`page lang-${lang}${packageId ? "" : " has-ticker"}`}>
       <a className="skip" href="#home" onClick={(event) => onSection(event, "home")}>
         Skip to content
       </a>
@@ -132,6 +220,7 @@ export default function HomePage() {
           setMenuOpen={setMenuOpen}
           onSection={onSection}
         />
+        {packageId ? null : <Ticker />}
       </div>
       <main>
         {packageId ? (
