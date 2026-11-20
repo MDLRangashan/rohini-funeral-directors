@@ -1,23 +1,23 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useState } from "react";
 import About from "../about/About";
 import Footer from "../contact/Footer";
-import Fleet from "../fleet/Fleet";
 import Gallery from "../gallery/Gallery";
 import Header from "../header/Header";
-import Ticker from "../header/Ticker";
-import TopBar from "../header/TopBar";
 import Hero from "../hero/Hero";
 import PackageDetail from "../packages/PackageDetail";
 import Packages from "../packages/Packages";
 import Privacy from "../privacy/Privacy";
 import Services from "../services/Services";
-import Testimonials from "../testimonials/Testimonials";
+import Story from "../story/Story";
 import { useLang } from "../../shared/i18n/language";
 import Lightbox from "../../shared/ui/Lightbox";
 
-function readPackageId() {
-  const match = window.location.hash.match(/^#package\/([a-z0-9-]+)$/);
-  return match ? match[1] : null;
+function readRoute() {
+  const hash = window.location.hash;
+  const match = hash.match(/^#package\/([a-z0-9-]+)$/);
+  if (match) return { view: "package", packageId: match[1] };
+  if (hash === "#about") return { view: "about", packageId: null };
+  return { view: "home", packageId: null };
 }
 
 function scrollTargets() {
@@ -42,15 +42,24 @@ function writeScrollTop(y) {
 }
 
 export default function HomePage() {
-  const { lang } = useLang();
-  const [active, setActive] = useState("home");
+  const { lang, t } = useLang();
+  const initial = readRoute();
+  const [view, setView] = useState(initial.view);
+  const [active, setActive] = useState(initial.view === "about" ? "about" : "home");
   const [menuOpen, setMenuOpen] = useState(false);
   const [viewer, setViewer] = useState(null);
   const [privacyOpen, setPrivacyOpen] = useState(false);
-  const [packageId, setPackageId] = useState(readPackageId);
+  const [termsOpen, setTermsOpen] = useState(false);
+  const [packageId, setPackageId] = useState(initial.packageId);
 
   useEffect(() => {
-    const sync = () => setPackageId(readPackageId());
+    const sync = () => {
+      const route = readRoute();
+      setView(route.view);
+      setPackageId(route.packageId);
+      if (route.view === "about") setActive("about");
+      if (route.view === "package") setActive("packages");
+    };
     window.addEventListener("popstate", sync);
     window.addEventListener("hashchange", sync);
     return () => {
@@ -116,6 +125,20 @@ export default function HomePage() {
     };
   }, [packageId]);
 
+  useLayoutEffect(() => {
+    if (view === "about") writeScrollTop(0);
+  }, [view]);
+
+  useEffect(() => {
+    if (view !== "home") return undefined;
+    const id = window.location.hash.replace("#", "");
+    if (!id || id === "home" || id.startsWith("package/")) return undefined;
+    const timer = window.setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 60);
+    return () => window.clearTimeout(timer);
+  }, [view]);
+
   useEffect(() => {
     const header = document.querySelector(".site-header");
     const page = header?.closest(".page");
@@ -128,26 +151,27 @@ export default function HomePage() {
     const observer = new ResizeObserver(sync);
     observer.observe(header);
     return () => observer.disconnect();
-  }, [lang, packageId]);
+  }, [lang, view, packageId]);
 
   useEffect(() => {
-    if (packageId) return undefined;
+    if (view !== "home") return undefined;
     if (!("IntersectionObserver" in window)) return undefined;
-    const ids = ["home", "services", "about", "fleet", "packages", "gallery", "testimonials", "contact"];
+    const ids = ["home", "services", "packages", "gallery", "testimonials", "contact"];
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
       },
-      { rootMargin: "-38% 0px -52% 0px", threshold: 0.01 }
+      { rootMargin: "-38% 0px -52% 0px", threshold: [0.01, 0.25, 0.6] }
     );
     ids.forEach((id) => {
       const element = document.getElementById(id);
       if (element) observer.observe(element);
     });
     return () => observer.disconnect();
-  }, [lang, packageId]);
+  }, [lang, view]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
@@ -169,15 +193,7 @@ export default function HomePage() {
     });
   }, []);
   const closePrivacy = useCallback(() => setPrivacyOpen(false), []);
-
-  const openPackage = useCallback((id) => {
-    const next = `#package/${id}`;
-    if (window.location.hash !== next) {
-      window.history.pushState({ packageId: id }, "", next);
-    }
-    setMenuOpen(false);
-    setPackageId(id);
-  }, []);
+  const closeTerms = useCallback(() => setTermsOpen(false), []);
 
   const backToPackages = useCallback(() => {
     if (window.history.state?.packageId) {
@@ -186,6 +202,7 @@ export default function HomePage() {
     }
     window.history.replaceState({}, "", "#packages");
     setActive("packages");
+    setView("home");
     setPackageId(null);
     window.setTimeout(() => {
       document.getElementById("packages")?.scrollIntoView({ behavior: "smooth" });
@@ -194,52 +211,68 @@ export default function HomePage() {
 
   const onSection = useCallback(
     (event, id) => {
-      if (!packageId) return false;
-      event.preventDefault();
-      window.history.pushState({}, "", `#${id}`);
+      setMenuOpen(false);
       setActive(id);
-      setPackageId(null);
-      window.setTimeout(() => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-      }, 40);
-      return true;
+      if (id === "about") {
+        event.preventDefault();
+        if (window.location.hash !== "#about") {
+          window.history.pushState({ view: "about" }, "", "#about");
+        }
+        setView("about");
+        setPackageId(null);
+        setActive("about");
+        return true;
+      }
+      if (view !== "home" || packageId) {
+        event.preventDefault();
+        window.history.pushState({}, "", `#${id}`);
+        setView("home");
+        setPackageId(null);
+        setActive(id);
+        window.setTimeout(() => {
+          document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+        }, 40);
+        return true;
+      }
+      return false;
     },
-    [packageId]
+    [view, packageId]
   );
 
+  const headerActive = view === "about" ? "about" : packageId ? "packages" : active;
+
   return (
-    <div className={`page lang-${lang}${packageId ? "" : " has-ticker"}`}>
+    <div className={`page lang-${lang}`}>
       <a className="skip" href="#home" onClick={(event) => onSection(event, "home")}>
         Skip to content
       </a>
       <div className="site-header">
-        <TopBar />
-        <Header
-          active={packageId ? "packages" : active}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-          onSection={onSection}
-        />
-        {packageId ? null : <Ticker />}
+        <Header active={headerActive} menuOpen={menuOpen} setMenuOpen={setMenuOpen} onSection={onSection} />
       </div>
       <main>
         {packageId ? (
           <PackageDetail packageId={packageId} onBack={backToPackages} onOpen={openViewer} />
+        ) : view === "about" ? (
+          <Story onSection={onSection} />
         ) : (
           <>
             <Hero />
-            <Services />
-            <About />
-            <Fleet onOpen={openViewer} />
-            <Packages onOpen={openPackage} />
+            <About onAbout={(event) => onSection(event, "about")} />
+            <Services onOpen={openViewer} />
+            <Packages />
             <Gallery onOpen={openViewer} />
-            <Testimonials />
           </>
         )}
       </main>
-      <Footer onPrivacy={() => setPrivacyOpen(true)} onSection={onSection} />
+      <Footer
+        edge={view === "home" && !packageId ? "dark" : "cream"}
+        onPrivacy={() => setPrivacyOpen(true)}
+        onTerms={() => setTermsOpen(true)}
+        onSection={onSection}
+      />
       <Lightbox viewer={viewer} onClose={closeViewer} onStep={stepViewer} />
       <Privacy open={privacyOpen} onClose={closePrivacy} />
+      <Privacy open={termsOpen} onClose={closeTerms} title={t.termsTitle} body={t.termsBody} />
     </div>
   );
 }

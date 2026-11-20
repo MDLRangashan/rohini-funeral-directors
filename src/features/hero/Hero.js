@@ -1,51 +1,47 @@
 import { imageSrc } from "../../shared/content/content";
 import { useLang } from "../../shared/i18n/language";
+import AmpersandText from "../../shared/ui/AmpersandText";
 import { Icon } from "../../shared/ui/Icons";
+import { SectionWave } from "../../shared/ui/Wave";
+
+function Lines({ text }) {
+  return String(text || "")
+    .split("\n")
+    .map((line, index) => <span key={`${line}-${index}`}>{line}</span>);
+}
 
 export default function Hero() {
   const { t } = useLang();
+  const [first, second] = t.heroTitle.split("\n");
+  const lily = `${imageSrc("hero-lilies.jpg")}?v=2`;
 
   return (
-    <section
-      className="hero"
-      id="home"
-      style={{ backgroundImage: `url(${imageSrc("hero.jpg")})` }}
-    >
-      <div className="container hero-inner">
+    <section className="hero" id="home" aria-label={t.heroKicker}>
+      <div className="hero-glow" aria-hidden="true" />
+      <img className="hero-candles" src={lily} alt="" />
+      <img className="hero-lily" src={lily} alt="" />
+      <img className="hero-building" src={imageSrc("farewell-home.jpg")} alt={t.aboutAlt} />
+      <div className="container hero-center">
         <div className="hero-copy">
-          <p className="kicker light">{t.heroKicker}</p>
-          <h1>{t.heroTitle}</h1>
-          <p className="hero-text">{t.heroText}</p>
-          <div className="hero-actions">
-            <a className="btn btn-gold" href={t.phoneHref}>
-              <Icon name="phone" />
-              {t.callNow}
-            </a>
-            <a
-              className="btn btn-line"
-              href={t.whatsappHref}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Icon name="whatsapp" />
-              {t.whatsapp}
-            </a>
-            <a className="btn btn-line" href="#services">
-              <Icon name="flower" />
-              {t.ourServices}
-            </a>
-          </div>
-          <ul className="feature-row">
-            {t.features.map((feature) => (
-              <li key={feature.label}>
-                <Icon name={feature.icon} />
-                <span>{feature.label}</span>
-              </li>
-            ))}
-          </ul>
+          <p className="eyebrow">{t.heroKicker}</p>
+          <h1>
+            <span>{first}</span>
+            {second ? (
+              <em>
+                <AmpersandText text={second} />
+              </em>
+            ) : null}
+          </h1>
+          <p className="hero-text">
+            <Lines text={t.heroText} />
+          </p>
+          <a className="btn btn-line" href="#about-intro">
+            {t.learnMore}
+            <Icon name="arrow" />
+          </a>
         </div>
       </div>
-      <p className="hero-quote">“{t.heroQuote}”</p>
+      <SectionWave place="bottom" />
     </section>
   );
 }

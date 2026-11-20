@@ -130,6 +130,15 @@ export function Icon({ name, className }) {
           <path d="M3.6 17.4h16.8v1.7H3.6z" />
         </svg>
       );
+    case "coffee":
+      return (
+        <svg className={className} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M4.6 8.2h12.2v6.2a4.1 4.1 0 0 1-4.1 4.1H8.7a4.1 4.1 0 0 1-4.1-4.1V8.2z" />
+          <path d="M16.6 9.5h1.7a2.15 2.15 0 0 1 0 4.3h-1.5v-1.45h1.5a.7.7 0 0 0 0-1.4H16.6V9.5z" />
+          <path d="M6.4 19.6h8.6v1.25H6.4z" />
+          <path d="M8.1 6.7c.35-.8.2-1.45-.15-2.15M10.7 6.7c.35-.8.2-1.45-.15-2.15" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+        </svg>
+      );
     case "pin":
       return (
         <svg {...common}>
@@ -198,6 +207,36 @@ export function Icon({ name, className }) {
           <path d="M5 12h14M13 6l6 6-6 6" />
         </svg>
       );
+    case "people":
+      return (
+        <svg className={className} viewBox="0 0 64 42" fill="currentColor" aria-hidden="true">
+          <circle cx="32" cy="9" r="6" />
+          <path d="M18.5 40c1.1-9.2 6.2-14 13.5-14s12.4 4.8 13.5 14h-27z" />
+          <circle cx="13.5" cy="13" r="4.6" />
+          <path d="M2 40c.8-7.2 4.4-11 9.2-11 1.8 0 3.4.4 4.8 1.2-1.6 2.6-2.6 6-3 9.8H2z" />
+          <circle cx="50.5" cy="13" r="4.6" />
+          <path d="M62 40c-.8-7.2-4.4-11-9.2-11-1.8 0-3.4.4-4.8 1.2 1.6 2.6 2.6 6 3 9.8H62z" />
+        </svg>
+      );
+    case "casket":
+      return (
+        <svg className={className} viewBox="0 0 40 54" fill="currentColor" aria-hidden="true">
+          <path
+            fillRule="evenodd"
+            d="M13 2h14l8 11v29c0 4.2-4 8-11 8h-8c-7 0-11-3.8-11-8V13L13 2zm5.2 16.2h3.2v4.2H26v3.4h-4.6V34h-3.2v-8.2H14v-3.4h4.2v-4.2z"
+          />
+        </svg>
+      );
+    case "frame":
+      return (
+        <svg className={className} viewBox="0 0 48 40" fill="currentColor" aria-hidden="true">
+          <path
+            fillRule="evenodd"
+            d="M2 3h44v34H2V3zm4.2 4.2v25.6h35.6V7.2H6.2zM9 29.5l8.2-7.6 5.2 4.6 4.2-3.4 9.4 6.4H9z"
+          />
+          <circle cx="16" cy="15" r="2.5" />
+        </svg>
+      );
     case "coffin":
       return (
         <svg {...common}>
@@ -211,6 +250,42 @@ export function Icon({ name, className }) {
           <path d="M3.5 10.5 12 4.5l8.5 6" />
           <path d="M6 9.8V19.5h12V9.8" />
           <path d="M10 19.5v-4.2h4v4.2" />
+        </svg>
+      );
+    case "handshake":
+      return (
+        <svg {...common}>
+          <path d="M8.2 13.2 10.4 11a1.5 1.5 0 0 1 2.1 0l1.5 1.5" />
+          <path d="m14 12.5 1.3-1.3a1.5 1.5 0 0 1 2.1 0l1.8 1.8" />
+          <path d="M4.8 14.2 8.2 13.2l2.4 2.1-1.7 1.7a1.4 1.4 0 0 1-2 0L4.8 15.2" />
+          <path d="m19.2 13 1.5 1.3-2.2 2.2-2.2-1.7" />
+          <path d="m10.6 15.3 2.1 2.1 2.2-2.2" />
+        </svg>
+      );
+    case "shield":
+      return (
+        <svg {...common}>
+          <path d="M12 3.6 19 6.4v5.2c0 3.7-2.8 6.6-7 8.8-4.2-2.2-7-5.1-7-8.8V6.4L12 3.6z" />
+          <path d="m9.1 12.1 1.9 1.9 3.9-4.1" />
+        </svg>
+      );
+    case "always":
+      return (
+        <svg className={className} viewBox="0 0 48 48" fill="none" stroke="currentColor" aria-hidden="true">
+          <path d="M24 9.5a14.5 14.5 0 1 1-10.2 4.2" strokeWidth="1.7" strokeLinecap="round" />
+          <path d="M11.2 7.2v7.2h7" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
+          <text
+            x="24"
+            y="27.5"
+            textAnchor="middle"
+            fill="currentColor"
+            stroke="none"
+            fontSize="11"
+            fontFamily="Montserrat, sans-serif"
+            fontWeight="600"
+          >
+            24/7
+          </text>
         </svg>
       );
     case "note":
